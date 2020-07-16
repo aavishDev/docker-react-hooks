@@ -10,3 +10,17 @@ before_install:
 
 scripts:
   - docker run -e CI=true aavish/devdocker-react-hooks npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  app: "docker-react-hooks"
+  region: "us-east-2"
+  env: "DockerReactHooks-env"
+  bucket_name: "elasticbeanstalk-us-east-2-184483214932"
+  bucket_path: "docker-react-hooks"
+  on:
+    branch: master
+  access_key_id:
+    secure: "AWS_ACCESS_KEY"
+  secret_access_key:
+    secure: "AWS_SECRET_ACCESS"
